@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './App.css';
 import Header from './components/Header'
 import Inputs from  './components/Inputs'
@@ -6,53 +6,49 @@ import Expenses from './components/Expenses'
 import Income from  './components/Income'
 
 function App() {
-  //const incList = []
-  //const expList = []
-  //const newIncList = incList.map(item => <Income key={} obj={item} />)
-  //const newExpList = expList.map(item => <Expenses obj = {item} />)
-   const [incList, setIncList] = useState([])
-   const [expList, setExpList] = useState([])
-  /* const handleInputClick = (id) => {
-     const inc = incList.filter(list=> list.id !== id)
-     setIncList([...inc])
-   }
-   const handleExpensesClick = (id) => {
-    const exp = expList.filter(list=> list.id !== id)
-    setExpList([...exp])
-  }*/
-
+  const [income,setIncome] = useState([])
+  const [expenses,setExpenses] = useState([])
+  const [renderInc, setRenderInc] = useState([])
+  const [renderExp, setRenderExp] = useState([])
   
-  const manageClick = (obj) => {
-    if(obj.type==='inc') {
-      setIncList([...incList, <Income  key={obj.id} obj={obj} />])
+  
+
+  const manageData = (data) => {
+    if (data.type === "inc" ) {
+      setIncome([...income, data])
       
     }
-    else if(obj.type==='exp') {
-      setExpList([...expList, <Expenses  key={obj.id} obj={obj} />])
-     }
-  }
+    else {
+      setExpenses([...expenses, data])
+      
+    }
+    
+}
+ useEffect(()=> {
+  const Inc = income.map((obj)=> <Income key={obj.id} obj={obj} />)
+  setRenderInc(Inc)
+  const Exp = expenses.map((obj)=> <Expenses key={obj.id} obj={obj} />)
+  setRenderExp(Exp)
+ }, [income, expenses])
 
-  
-
-   
   
   return (
     <div>
       <Header />
-      <Inputs  manageClick={manageClick}/>
+      <Inputs exportInputs = {manageData} />
       <div className="container clearfix">
           <div className="income">
             <h2 className="icome__title">Income</h2>
                     
             <div className="income__list">
-              {incList}
+               {renderInc}
             </div>
           </div>
           <div className="expenses">
             <h2 className="expenses__title">Expenses</h2>
             
             <div className="expenses__list">
-              {expList}
+                {renderExp}
             </div>
                 
           </div>

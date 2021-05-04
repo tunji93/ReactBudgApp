@@ -10,7 +10,7 @@ function Income(props) {
             <div className="right clearfix">
                 <div className="item__value">+ {props.obj.val}</div>
                 <div className="item__delete">
-                    <button onClick = {props.handleClick} className="item__delete--btn">
+                    <button onClick = {()=>props.handleClick(props.obj.id)} className="item__delete--btn">
                         <i className="ion-ios-close-outline"></i>
                     </button>
                 </div>

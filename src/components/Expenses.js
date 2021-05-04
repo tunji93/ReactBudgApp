@@ -11,7 +11,7 @@ function Expenses(props) {
                 <div className="item__value">- {props.obj.val}</div>
                 <div className="item__percentage">21%</div>
                 <div className="item__delete">
-                    <button onClick = {props.handleClick} className="item__delete--btn"><i className="ion-ios-close-outline"></i></button>
+                    <button onClick = {()=>props.handleClick(props.obj.id)} className="item__delete--btn"><i className="ion-ios-close-outline"></i></button>
                 </div>
             </div>
         </div>

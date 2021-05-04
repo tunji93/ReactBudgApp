@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState,useEffect} from 'react'
 import './App.css';
 import Header from './components/Header'
 import Inputs from  './components/Inputs'
@@ -24,10 +24,20 @@ function App() {
     }
     
 }
+
+ const deleteIncItem = (item) => {
+   const newList = income.filter((items)=> items.id !== item)
+   setIncome(newList)
+ }
+
+ const deleteExpItem = (item) => {
+  const newList = expenses.filter((items)=> items.id !== item)
+  setExpenses(newList)
+}
  useEffect(()=> {
-  const Inc = income.map((obj)=> <Income key={obj.id} obj={obj} />)
+  const Inc = income.map((obj)=> <Income key={obj.id} obj={obj} handleClick = {deleteIncItem} />)
   setRenderInc(Inc)
-  const Exp = expenses.map((obj)=> <Expenses key={obj.id} obj={obj} />)
+  const Exp = expenses.map((obj)=> <Expenses key={obj.id} obj={obj} handleClick = {deleteExpItem} />)
   setRenderExp(Exp)
  }, [income, expenses])
 

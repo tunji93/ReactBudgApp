@@ -10,17 +10,20 @@ function App() {
   const [expenses,setExpenses] = useState([])
   const [renderInc, setRenderInc] = useState([])
   const [renderExp, setRenderExp] = useState([])
+  const [totalInc, setTotalInc] = useState(0)
+  const [totalExp, setTotalExp] = useState(0)
   
   
 
   const manageData = (data) => {
     if (data.type === "inc" ) {
       setIncome([...income, data])
+      setTotalInc(prev=> prev+ parseInt(data.val))
       
     }
     else {
       setExpenses([...expenses, data])
-      
+      setTotalExp(prev=> prev+ parseInt(data.val))
     }
     
 }
@@ -44,7 +47,7 @@ function App() {
   
   return (
     <div>
-      <Header />
+      <Header  totalInc={totalInc} totalExp={totalExp}/>
       <Inputs exportInputs = {manageData} />
       <div className="container clearfix">
           <div className="income">

@@ -4,9 +4,7 @@ import React from 'react'
 function Header(props) {
     const month = new Date().toLocaleString("default", { month: "long" })
     const year =  new Date().getFullYear()
-    const percentage = () => (
-        props.totalInc? `${Math.round((props.totalExp /props.totalInc) * 100)}%` : "---"
-    )
+    
     return (
         
         <header>
@@ -17,12 +15,12 @@ function Header(props) {
 
                 </div>
                 
-                <div className="budget__value">{props.totalInc - props.totalExp}</div>
+                <div className="budget__value">10,000</div>
                 
                 <div className="budget__income clearfix">
                     <div className="budget__income--text">Income</div>
                     <div className="right">
-                        <div className="budget__income--value">+ {props.totalInc}</div>
+                        <div className="budget__income--value">+ 5000</div>
                         <div className="budget__income--percentage">&nbsp;</div>
                         
                     </div>
@@ -31,8 +29,8 @@ function Header(props) {
                 <div className="budget__expenses clearfix">
                     <div className="budget__expenses--text">Expenses</div>
                     <div className="right clearfix">
-                        <div className="budget__expenses--value">- {props.totalExp}</div>
-                        <div className="budget__expenses--percentage">{percentage()}</div>
+                        <div className="budget__expenses--value">- 7500</div>
+                        <div className="budget__expenses--percentage">45%</div>
                     </div>
                 </div>
             </div>

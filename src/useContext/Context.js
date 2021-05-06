@@ -31,6 +31,16 @@ function Provider(props) {
             setExpInputs(prev=> [...prev, addInput])
         }
     }
+    const deleteItem = (obj) => {
+        if(obj.type==="inc") {
+           const array = incInputs.filter(input=> input.id !== obj.id)
+            setIncInputs(array)
+        }
+        else {
+            const array = expInputs.filter(input=> input.id !== obj.id)
+            setExpInputs(array)
+        }
+    }
 
 
     return (
@@ -47,7 +57,7 @@ function Provider(props) {
                     
                 </div>
             </div>
-            <Context.Provider value={{incInputs, expInputs}}>
+            <Context.Provider value={{incInputs, expInputs, deleteItem}}>
                 {props.children}
             </Context.Provider>
         </>

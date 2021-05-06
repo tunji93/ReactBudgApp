@@ -20,15 +20,22 @@ function Provider(props) {
        )
     }
     const handleInputs = () => {
-        const addInput ={
-            id: new Date().toLocaleTimeString(),
-            ...input
+        if (input.val>0 && input.desc && input.type) {
+            const addInput ={
+                id: new Date().toLocaleTimeString(),
+                ...input
+            }
+            if (addInput.type ==="inc") {
+                setIncInputs(prev=> [...prev, addInput])
+            }
+            else {
+                setExpInputs(prev=> [...prev, addInput])
+            }
+
+            setInput({desc: "", val: "", type: "inc" })
         }
-        if (addInput.type ==="inc") {
-            setIncInputs(prev=> [...prev, addInput])
-        }
-        else {
-            setExpInputs(prev=> [...prev, addInput])
+        else{
+            alert("kindly enter all fields appropriately")
         }
     }
     const deleteItem = (obj) => {
